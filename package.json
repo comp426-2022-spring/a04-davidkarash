@@ -1,0 +1,25 @@
+{
+  "name": "a04-davidkarash",
+  "version": "0.0.1",
+  "description": "databases, logs, errors, and middleware",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/comp426-2022-spring/a04-davidkarash.git"
+  },
+  "author": "davidkarash",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/comp426-2022-spring/a04-davidkarash/issues"
+  },
+  "homepage": "https://github.com/comp426-2022-spring/a04-davidkarash#readme",
+  "dependencies": {
+    "better-sqlite3": "^7.5.0",
+    "express": "^4.17.3",
+    "minimist": "^1.2.6"
+  }
+}
