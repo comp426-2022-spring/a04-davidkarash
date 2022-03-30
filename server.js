@@ -1,6 +1,6 @@
 // Import minimist early and check for --help flag
 import min from 'minimist';
-let args = min(process.argv.slice(2), {'default':{'port':5000,'debug':false,'log':true}});
+let args = min(process.argv.slice(2), {'default':{'port':5555,'debug':false,'log':true}});
 if (args['help']) {
     console.log(`server.js [options]
 
@@ -20,12 +20,14 @@ if (args['help']) {
 }
 // Other imports after --help check
 import express from 'express';
+import morgan from 'morgan';
+import fs from 'fs';
 import { coinFlip, coinFlips, countFlips, flipACoin } from './coin.mjs';
 // Setup before starting app
 const app = express();
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-const port = args['port'] || 5000
+const port = args['port']
 const server = app.listen(port, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%', port))
 })
@@ -48,6 +50,10 @@ app.use( (req, res, next) => {
     stmt.run(logdata.remoteaddr, logdata.remoteuser, logdata.time, logdata.method, logdata.url, logdata.protocol, logdata.httpversion, logdata.secure.toString(),logdata.status,logdata.referer,logdata.useragent);
     next()
 })
+if (args['log']) {
+    const filestream = fs.createWriteStream('./access.log', {flags: 'a'});
+    app.use(morgan('combined', { stream:filestream }))
+}
 if (args['debug']) {
     app.get('/app/log/access/', (req, res) => {
         try {
