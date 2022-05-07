@@ -16,7 +16,7 @@ if (args['help']) {
                     Logs are always written to database.
       
         --help	Return this message and exit.`)
-        exit(0)
+        process.exit(0);
 }
 // Other imports after --help check
 import express from 'express';
@@ -32,6 +32,7 @@ const server = app.listen(port, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%', port))
 })
 import pkg from './database.cjs'
+import { exit } from 'process';
 app.use( (req, res, next) => {
     let logdata = {
         remoteaddr: req.ip,
