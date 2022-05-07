@@ -49,7 +49,8 @@ app.use( (req, res, next) => {
     stmt.run(logdata.remoteaddr, logdata.remoteuser, logdata.time, logdata.method, logdata.url, logdata.protocol, logdata.httpversion, logdata.status,logdata.referer,logdata.useragent);
     next()
 })
-if (args['log']) {
+console.log(args['log'])
+if (args['log'] == true) {
     const filestream = fs.createWriteStream('./access.log', {flags: 'a'});
     app.use(morgan('combined', { stream:filestream }))
 }
