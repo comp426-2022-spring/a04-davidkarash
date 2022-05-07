@@ -57,7 +57,8 @@ if (args['log'] == true) {
 if (args['debug']) {
     app.get('/app/log/access/', (req, res) => {
         try {
-            const stmt = pkg.accesslog.prepare('SELECT * FROM accesslog').all()
+            // const stmt = pkg.accesslog.prepare('SELECT * FROM accesslog').all()
+            const stmt = '[{id}]'
             res.status(200).json(stmt)
         } catch {
             console.error(e)
