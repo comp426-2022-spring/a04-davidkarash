@@ -32,7 +32,6 @@ const server = app.listen(port, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%', port))
 })
 import pkg from './database.cjs'
-import { exit } from 'process';
 app.use( (req, res, next) => {
     let logdata = {
         remoteaddr: req.ip,
@@ -42,7 +41,6 @@ app.use( (req, res, next) => {
         url: req.url,
         protocol: req.protocol,
         httpversion: req.httpVersion,
-        secure: req.secure,
         status: res.statusCode,
         referer: req.headers['referer'],
         useragent: req.headers['user-agent']
