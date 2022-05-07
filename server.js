@@ -65,8 +65,8 @@ if (args['debug']) {
         }
     })
     app.get('/app/error/', (req, res) => {
-        res.send('500 Internal Server Error');
-        // throw new Error('BROKEN');
+        // res.send('500 Internal Server Error');
+        throw new Error('BROKEN');
     })
 }
 app.get('/app/', (req, res) => {
